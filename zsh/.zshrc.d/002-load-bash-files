@@ -1,0 +1,18 @@
+# Load bash files if enabled
+# Implementation of Issue 291: Add optional loading of .bash_functions and .bash_aliases
+
+# Load .bash_functions if enabled
+if [[ $(_zqs-get-setting load-bash-functions false) == 'true' ]]; then
+  if [ -r ~/.bash_functions ]; then
+    source ~/.bash_functions
+    echo "Loaded .bash_functions"
+  fi
+fi
+
+# Load .bash_aliases if enabled
+if [[ $(_zqs-get-setting load-bash-aliases false) == 'true' ]]; then
+  if [ -r ~/.bash_aliases ]; then
+    source ~/.bash_aliases
+    echo "Loaded .bash_aliases"
+  fi
+fi

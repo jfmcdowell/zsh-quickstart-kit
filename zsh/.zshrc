@@ -815,6 +815,12 @@ function zqs-help() {
   echo "zqs disable-1password-agent - New sessions will not use 1Password's ssh agent"
   echo "zqs enable-1password-agent - New sessions will use 1Password's ssh agent if present."
 
+  echo "zqs disable-bash-aliases - Don't load .bash_aliases file in new sessions"
+  echo "zqs enable-bash-aliases - Load .bash_aliases file in new sessions if it exists"
+
+  echo "zqs disable-bash-functions - Don't load .bash_functions file in new sessions"
+  echo "zqs enable-bash-functions - Load .bash_functions file in new sessions if it exists"
+
   echo "zqs disable-bindkey-handling - Set the quickstart to not touch any bindkey settings. Useful if you're using another plugin to handle it."
   echo "zqs enable-bindkey-handling - Set the quickstart to configure your bindkey settings. This is the default behavior."
 
@@ -892,6 +898,24 @@ function zqs() {
     'enable-1password-agent')
       echo "Enabling 1password ssh-agent. New ZSH sessions will use 1password's ssh agent."
       _zqs-set-setting use-1password-ssh-agent true
+      ;;
+
+    'disable-bash-aliases')
+      echo "Disabling loading of .bash_aliases. New ZSH sessions will no longer load this file."
+      _zqs-set-setting load-bash-aliases false
+      ;;
+    'enable-bash-aliases')
+      echo "Enabling loading of .bash_aliases. New ZSH sessions will load this file if it exists."
+      _zqs-set-setting load-bash-aliases true
+      ;;
+
+    'disable-bash-functions')
+      echo "Disabling loading of .bash_functions. New ZSH sessions will no longer load this file."
+      _zqs-set-setting load-bash-functions false
+      ;;
+    'enable-bash-functions')
+      echo "Enabling loading of .bash_functions. New ZSH sessions will load this file if it exists."
+      _zqs-set-setting load-bash-functions true
       ;;
 
     'disable-bindkey-handling')
